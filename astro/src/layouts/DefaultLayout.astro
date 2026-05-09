@@ -1,11 +1,11 @@
 ---
+import { getWebsiteInfo } from '../repositories/WebsiteInfo.ts'
+
 import Header from '../components/Header.astro'
 
-const infoResponse = await fetch(
-    'http://payload:3000/api/globals/website-info?depth=2&draft=false&locale=undefined&trash=false'
-)
-const infoData: any = await infoResponse.json()
-const title = infoData.title
+const info = await getWebsiteInfo()
+
+const title = info.title
 ---
 
 <html lang="en">

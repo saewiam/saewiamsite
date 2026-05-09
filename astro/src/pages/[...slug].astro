@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
+import { getAllPages, getPageByURL } from '../repositories/Page.ts'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 
 const { slug } = Astro.params
@@ -8,11 +9,7 @@ const { slug } = Astro.params
 /* STATIC BUILD PATHS */
 /************ START ************/
 export const getStaticPaths = (async () => {
-    const response = await fetch(
-        'http://payload:3000/api/pages?depth=0&draft=false&trash=false'
-    )
-    const data = await response.json()
-    const pages = data.docs.map((page: any) => {
+    const pages = getAllPages().map((page: any) => {
         return {
             params: { slug: page.url },
         }
@@ -21,24 +18,17 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 /************ END ************/
 
-const url =
-    'http://payload:3000/api/pages?depth=0&draft=false&trash=false' +
-    '&where[url][equals]=' +
-    encodeURIComponent(`/${slug}`)
-const response = await fetch(url)
-const data = await response.json()
-
-const title = data.docs[0]?.title
+const page = await getPageByURL(slug)
 ---
 
 {
-    data.docs?.length === 0 ? (
+    page ? (
         <DefaultLayout>
-            <h2>404 not found</h2>
+            <h2>{page.title}</h2>
         </DefaultLayout>
     ) : (
         <DefaultLayout>
-            <h2>{title}</h2>
+            <h2>404 not found</h2>
         </DefaultLayout>
     )
 }
