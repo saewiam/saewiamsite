@@ -2,14 +2,20 @@
 import type { GetStaticPaths } from 'astro'
 
 import { getAllPages, getPageByURL } from '../repositories/Page.ts'
+
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+import { Grid, ImageColumn } from '../models/Page'
+
+import ImageColumnBlock from '../components/content-blocks/ImageColumnBlock.astro'
+import GridBlock from '../components/content-blocks/GridBlock.astro'
 
 const { slug } = Astro.params
 
 /* STATIC BUILD PATHS */
 /************ START ************/
 export const getStaticPaths = (async () => {
-    const pages = getAllPages().map((page: any) => {
+    const pages = (await getAllPages()).map((page: any) => {
         return {
             params: { slug: page.url },
         }
@@ -21,14 +27,24 @@ export const getStaticPaths = (async () => {
 const page = await getPageByURL(slug)
 ---
 
-{
-    page ? (
-        <DefaultLayout>
-            <h2>{page.title}</h2>
-        </DefaultLayout>
-    ) : (
-        <DefaultLayout>
-            <h2>404 not found</h2>
-        </DefaultLayout>
-    )
-}
+<DefaultLayout>
+    <h2>{page?.title || '404 not found'}</h2>
+    {
+        page?.content.map((block) => {
+            if (block instanceof ImageColumn) {
+                return (
+                    <section>
+                        <ImageColumnBlock content={block} />
+                    </section>
+                )
+            }
+            if (block instanceof Grid) {
+                return (
+                    <section>
+                        <GridBlock content={block} />
+                    </section>
+                )
+            }
+        })
+    }
+</DefaultLayout>

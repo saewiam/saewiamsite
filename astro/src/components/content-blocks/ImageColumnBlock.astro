@@ -1,0 +1,13 @@
+---
+import { ImageColumn } from '../../models/Page'
+
+interface Props {
+    content: ImageColumn
+}
+
+const { content } = Astro.props
+---
+
+<div>
+    {content.images.map((image) => <img src={image} />)}
+</div>

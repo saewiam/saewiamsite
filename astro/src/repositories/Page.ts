@@ -1,4 +1,4 @@
-import type { Page } from "../models/Page";
+import { Grid, ImageColumn, type Page } from "../models/Page";
 
 export const getAllPages = async (): Promise<Page[]> => {
     const response = await fetch(
@@ -16,14 +16,13 @@ export const getAllPages = async (): Promise<Page[]> => {
 
 export const getPageByURL = async (url: string): Promise<Page | undefined> => {
     const fetchUrl =
-        'http://payload:3000/api/pages?depth=0&draft=false&trash=false' +
+        'http://payload:3000/api/pages?depth=4&draft=false&trash=false' +
         '&where[url][equals]=' +
         encodeURIComponent(`/${url}`)
     const response = await fetch(fetchUrl)
     const data = await response.json()
 
     if (data.docs.length === 0) return undefined
-    console.log(data.docs[0])
     return {
         title: data.docs[0].title,
         url: data.docs[0].url,
@@ -32,14 +31,11 @@ export const getPageByURL = async (url: string): Promise<Page | undefined> => {
 }
 
 const mapRawContentBlock = (raw: any) => {
-    let block: any = {}
     switch (raw.blockType) {
         case 'grid':
-            block.columns = raw.columns.map(mapRawContentBlock)
-            break;
+            return new Grid(raw.columns.map(mapRawContentBlock))
         case 'imageColumn':
-            block.images = raw.images.map(mapMedia)
-            break;
+            return new ImageColumn(raw.images.map(mapMedia))
     }
 }
 

@@ -6,13 +6,19 @@ export type Page = {
 
 // TODO: separate file for content block types
 
-export type ContentBlock = GridBlock | ImageColumn
+export type ContentBlock = Grid | ImageColumn
 
-export type GridBlock = {
+export class Grid {
     columns: ImageColumn[]
+    constructor(columns: ImageColumn[]) {
+        this.columns = columns
+    }
 }
 
-export type ImageColumn = {
+export class ImageColumn {
     // TODO: type for images/media
     images: string[]
+    constructor(images: string[]) {
+        this.images = images
+    }
 }

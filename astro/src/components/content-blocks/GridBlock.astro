@@ -1,0 +1,21 @@
+---
+import { ImageColumn, Grid } from '../../models/Page'
+
+import ImageColumnBlock from './ImageColumnBlock.astro'
+
+interface Props {
+    content: Grid
+}
+
+const { content } = Astro.props
+---
+
+<div>
+    {
+        content.columns.map((block) => {
+            if (block instanceof ImageColumn) {
+                return <ImageColumnBlock content={block} />
+            }
+        })
+    }
+</div>
