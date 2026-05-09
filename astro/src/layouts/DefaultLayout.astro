@@ -1,0 +1,26 @@
+---
+import Header from '../components/Header.astro'
+
+const infoResponse = await fetch(
+    'http://payload:3000/api/globals/website-info?depth=2&draft=false&locale=undefined&trash=false'
+)
+const infoData: any = await infoResponse.json()
+const title = infoData.title
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body>
+        <Header title={title} />
+        <main>
+            <slot />
+        </main>
+    </body>
+</html>

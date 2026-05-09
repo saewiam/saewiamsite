@@ -2,6 +2,9 @@
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
+    devToolbar: {
+        enabled: false,
+    },
     integrations: [
         {
             name: 'dev-server-dynamic-render',
