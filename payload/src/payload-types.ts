@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     pages: Page;
+    icons: Icon;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    icons: IconsSelect<false> | IconsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -90,10 +92,12 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    nav: Nav;
+    navigation: Navigation;
+    'website-info': WebsiteInfo;
   };
   globalsSelect: {
-    nav: NavSelect<false> | NavSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
+    'website-info': WebsiteInfoSelect<false> | WebsiteInfoSelect<true>;
   };
   locale: null;
   widgets: {
@@ -222,6 +226,25 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons".
+ */
+export interface Icon {
+  id: string;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -255,6 +278,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'icons';
+        value: string | Icon;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -399,6 +426,24 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "icons_select".
+ */
+export interface IconsSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -439,9 +484,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nav".
+ * via the `definition` "navigation".
  */
-export interface Nav {
+export interface Navigation {
   id: string;
   links?:
     | {
@@ -464,9 +509,27 @@ export interface Nav {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "nav_select".
+ * via the `definition` "website-info".
  */
-export interface NavSelect<T extends boolean = true> {
+export interface WebsiteInfo {
+  id: string;
+  title: string;
+  socials?:
+    | {
+        name: string;
+        url: string;
+        icon: string | Icon;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
   links?:
     | T
     | {
@@ -481,6 +544,24 @@ export interface NavSelect<T extends boolean = true> {
               id?: T;
             };
         url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "website-info_select".
+ */
+export interface WebsiteInfoSelect<T extends boolean = true> {
+  title?: T;
+  socials?:
+    | T
+    | {
+        name?: T;
+        url?: T;
+        icon?: T;
         id?: T;
       };
   updatedAt?: T;

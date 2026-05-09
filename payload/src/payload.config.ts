@@ -6,8 +6,10 @@ import { fileURLToPath } from 'url'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
-import { Nav } from './globals/Nav'
+import { Navigation } from './globals/Navigation'
 import { nestedDocsPlugin } from '@payloadcms/plugin-nested-docs'
+import { WebsiteInfo } from './globals/WebsiteInfo'
+import { Icons } from './collections/Icons'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,8 +28,8 @@ export default buildConfig({
             password: 'admin',
         },
     },
-    collections: [Users, Media, Pages],
-    globals: [Nav],
+    collections: [Users, Media, Pages, Icons],
+    globals: [Navigation, WebsiteInfo],
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),

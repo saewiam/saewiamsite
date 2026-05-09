@@ -60,17 +60,17 @@ services:
       watch:
         - action: sync
           path: ./astro/src
-          target: /home/node/app/src
+          target: /app/src
           initial_sync: true
         - action: rebuild
           path: ./astro/package.json
         - action: sync+restart
           path: ./astro/astro.config.mjs
-          target: /home/node/app/astro.config.mjs
+          target: /app/astro.config.mjs
           initial_sync: true
         - action: sync+restart
           path: ./astro/tsconfig.json
-          target: /home/node/app/tsconfig.json
+          target: /app/tsconfig.json
           initial_sync: true
     depends_on:
       payload:

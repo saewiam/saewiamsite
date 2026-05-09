@@ -1,9 +1,20 @@
 ---
-const response = await fetch(
-    'http://payload:3000/api/globals/nav?depth=0&draft=false&trash=false'
+// TODO: create service functions for these
+
+// get general website information
+const infoResponse = await fetch(
+    'http://payload:3000/api/globals/website-info?depth=2&draft=false&locale=undefined&trash=false'
 )
-const data: any = await response.json()
-const links = data.links.map((link: any) => {
+const infoData: any = await infoResponse.json()
+const title = infoData.title
+const socials: any[] = infoData.socials
+
+// get navigation link data
+const navResponse = await fetch(
+    'http://payload:3000/api/globals/navigation?depth=0&draft=false&trash=false'
+)
+const navData: any = await navResponse.json()
+const links = navData.links.map((link: any) => {
     return {
         title: link.title,
         url: link.url,
@@ -24,10 +35,10 @@ const links = data.links.map((link: any) => {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
+        <title>{title}</title>
     </head>
     <body>
-        <h1>Astro</h1>
+        <h1>{title}</h1>
         <nav>
             <ul>
                 {

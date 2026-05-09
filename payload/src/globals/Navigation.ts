@@ -1,7 +1,7 @@
 import type { GlobalConfig } from 'payload'
 
-export const Nav: GlobalConfig = {
-    slug: 'nav',
+export const Navigation: GlobalConfig = {
+    slug: 'navigation',
     fields: [
         {
             name: 'links',
