@@ -1,5 +1,4 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
@@ -29,7 +28,6 @@ export default buildConfig({
     },
     collections: [Users, Media, Pages],
     globals: [Nav],
-    editor: lexicalEditor(),
     secret: process.env.PAYLOAD_SECRET || '',
     typescript: {
         outputFile: path.resolve(dirname, 'payload-types.ts'),
@@ -38,13 +36,24 @@ export default buildConfig({
         url: process.env.DATABASE_URL || '',
     }),
     onInit: async (payload) => {
-        payload.create({
+        const adminQuery = await payload.find({
             collection: 'users',
-            data: {
-                username: 'admin',
-                password: 'admin',
-            },
+            where: {
+                username: {
+                    equals: 'admin'
+                }
+            }
         })
+        if (adminQuery.totalDocs === 0) {
+            console.log('making new user')
+            await payload.create({
+                collection: 'users',
+                data: {
+                    username: 'admin',
+                    password: 'admin',
+                },
+            })
+        }
     },
     endpoints: [
         {
