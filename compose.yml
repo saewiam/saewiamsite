@@ -3,8 +3,6 @@ services:
     build:
       context: ./payload
       target: builder
-    ports:
-      - '3000:3000'
     volumes:
       - payload_build:/app/.next
       - payload_modules:/app/node_modules
@@ -51,8 +49,6 @@ services:
     build:
       context: ./astro
       target: files
-    ports:
-      - '4321:4321'
     volumes:
       - assets:/app/public/assets
     command: sh -c "npm i && npm run dev -- --host"
@@ -82,13 +78,98 @@ services:
     volumes:
       - assets:/home/node/app/public/assets
       - ./build:/home/node/app/dist
-    profiles: [build]
+    environment:
+      - NODE_ENV=development
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./astro
+          target: /app
+          ignore:
+            - node_modules/
+            - dist/
+          initial_sync: true
+        - action: sync+exec
+          path: ./astro/package.json
+          target: /app/package.json
+          initial_sync: true
+          exec:
+            command: sh -c "npm i"
     depends_on:
       payload:
         condition: service_healthy
+  legacy:
+    build:
+      context: ./legacy
+      dockerfile_inline: |
+        FROM node:25-alpine as base
+        FROM base as deps
+        WORKDIR /app
+        COPY package*.json .
+        RUN npm ci
+        FROM base as builder
+        WORKDIR /app
+        COPY --exclude=node_modules/ --exclude=dist/ . .
+        COPY --from=deps /app/node_modules ./node_modules
+        VOLUME /app/dist
+        CMD sh -c "npm run build"
+    environment:
+      - node_env=development
+    volumes:
+      - legacy:/app/dist
+  caddy:
+    image: caddy:latest
+    ports:
+      - '80:80'
+    volumes:
+      - ./build:/srv/preview
+      - legacy:/srv/legacy
+      - caddy_data:/data
+    configs:
+      - source: caddy
+        target: /etc/caddy/Caddyfile
+    depends_on:
+      legacy:
+        condition: service_completed_successfully
+      build:
+        condition: service_completed_successfully
 volumes:
   astro_modules:
   payload_modules:
   payload_build:
   mongo-data:
   assets:
+  legacy:
+  caddy_data:
+configs:
+  caddy:
+    content: |
+      {
+        auto_https off
+      }
+      http://legacy.localhost {
+        root /srv/legacy
+        file_server
+        handle_errors {
+          rewrite /index.html
+          file_server {
+            status 200
+          }
+        }
+      }
+      http://cms.localhost {
+        reverse_proxy payload:3000
+      }
+      http://develop.localhost {
+        reverse_proxy astro:4321
+      }
+      http://preview.localhost {
+        root /srv/preview
+        file_server
+        handle_errors {
+          rewrite /index.html
+          file_server {
+            status 200
+          }
+        }
+      }
