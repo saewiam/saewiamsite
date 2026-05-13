@@ -10,11 +10,22 @@ interface Props {
 const { content } = Astro.props
 ---
 
+<style>
+    div {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+    .column {
+        flex: 1;
+    }
+</style>
+
 <div>
     {
         content.columns.map((block) => {
             if (block instanceof ImageColumn) {
-                return <ImageColumnBlock content={block} />
+                return <ImageColumnBlock content={block} class="column" />
             }
         })
     }

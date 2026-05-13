@@ -27,6 +27,12 @@ export default buildConfig({
             username: 'admin',
             password: 'admin',
         },
+        livePreview: {
+            url: ({ data }) => {
+                return `http://develop.localhost${data.url}`
+            },
+            collections: ['pages']
+        }
     },
     collections: [Users, Media, Pages, Icons],
     globals: [Navigation, WebsiteInfo],

@@ -8,6 +8,14 @@ interface Props {
 const { content } = Astro.props
 ---
 
+<style>
+    div {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+</style>
+
 <div>
     {content.images.map((image) => <img src={image} />)}
 </div>
