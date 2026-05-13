@@ -7,6 +7,12 @@ const links = await getNavigationLinks()
 <style>
     * {
         padding: 0;
+        list-style: none;
+    }
+    nav,
+    ul,
+    li {
+        overflow: visible;
     }
     nav > ul {
         max-width: 800px;
@@ -24,12 +30,13 @@ const links = await getNavigationLinks()
                 background-color: #eee;
             }
             & > ul {
-                visibility: hidden;
+                visibility: none;
                 display: none;
+
                 position: absolute;
                 width: 100%;
             }
-            &:has(a:hover) ul {
+            &:has(a:hover) > ul {
                 visibility: visible;
                 display: block;
             }
