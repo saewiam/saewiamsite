@@ -8,6 +8,30 @@ const info = await getWebsiteInfo()
 const title = info.title
 ---
 
+<style is:global>
+    * {
+        margin: 0;
+        font-family: Inter;
+        text-decoration: none;
+        color: black;
+        overflow: auto;
+    }
+    main {
+        max-width: 1800px;
+        padding: 50px 3vw;
+        align-self: stretch;
+        display: block;
+        flex-grow: 1;
+        width: 100%;
+        margin: 0 auto auto;
+        box-sizing: border-box;
+        @media (min-width: 1200px) {
+            max-width: 1920px;
+            padding: 100px 100px;
+        }
+    }
+</style>
+
 <html lang="en">
     <head>
         <meta charset="utf-8" />

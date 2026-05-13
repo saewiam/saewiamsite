@@ -4,6 +4,39 @@ import { getNavigationLinks } from '../repositories/NavigationLink.ts'
 const links = await getNavigationLinks()
 ---
 
+<style>
+    * {
+        padding: 0;
+    }
+    nav > ul {
+        max-width: 800px;
+        margin: auto;
+        display: flex;
+        align-items: baseline;
+        & > li {
+            display: block;
+            flex-grow: 1;
+            position: relative;
+            a {
+                display: block;
+            }
+            a:hover {
+                background-color: #eee;
+            }
+            & > ul {
+                visibility: hidden;
+                display: none;
+                position: absolute;
+                width: 100%;
+            }
+            &:has(a:hover) ul {
+                visibility: visible;
+                display: block;
+            }
+        }
+    }
+</style>
+
 <nav>
     <ul>
         {

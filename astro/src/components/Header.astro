@@ -4,6 +4,21 @@ import Navigation from '../components/Navigation.astro'
 const { title } = Astro.props
 ---
 
+<style>
+    header {
+        text-align: center;
+        h1 {
+            margin: 30px auto;
+            font-size: 3em;
+        }
+        overflow: visible;
+    }
+
+    :global(.active) {
+        color: purple;
+    }
+</style>
+
 <header>
     <h1><a href="/">{title}</a></h1>
     <Navigation />
