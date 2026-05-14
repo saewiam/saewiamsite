@@ -11,6 +11,10 @@ export const Media: CollectionConfig = {
             type: 'text',
             required: true,
         },
+        {
+            name: 'caption',
+            type: 'text',
+        },
     ],
     upload: {
         staticDir: 'assets/media',

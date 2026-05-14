@@ -1,9 +1,24 @@
 import { createBreadcrumbsField } from '@payloadcms/plugin-nested-docs'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import type {
     Block,
     CollectionConfig,
     TextFieldSingleValidation,
 } from 'payload'
+
+export const TextBlock: Block = {
+    slug: 'textBlock',
+    admin: {
+        disableBlockName: true,
+    },
+    fields: [
+        {
+            name: 'text',
+            type: 'richText',
+            editor: lexicalEditor()
+        }
+    ]
+}
 
 export const ImageColumn: Block = {
     slug: 'imageColumn',
@@ -84,7 +99,7 @@ export const Pages: CollectionConfig = {
         {
             name: 'content',
             type: 'blocks',
-            blocks: [ImageColumn, GridBlock],
+            blocks: [ImageColumn, GridBlock, TextBlock],
         },
         {
             name: 'url',
