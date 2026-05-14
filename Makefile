@@ -7,4 +7,6 @@ stop:
 clean:
 	docker compose down -v
 build:
+	-rm build.zip
 	docker compose run --build --remove-orphans build
+	cd build && zip -r ../build.zip .
