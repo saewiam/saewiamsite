@@ -1,0 +1,171 @@
+{
+    "projects":[
+        {
+            "name": "makeda sketch 1",
+            "caption": "initial sketches of makeda's design",
+            "date": "2025-12-06",
+            "fileName": "makeda sketch1.png"
+        },
+        {
+            "name": "vien sketch 1",
+            "caption": "initial sketches of vien's design",
+            "date": "2025-12-06",
+            "fileName": "vien sketch1.png" 
+        },
+        {
+            "name": "itnor cover",
+            "caption": "concept illustration for cover of comic",
+            "date": "2026-1-10",
+            "fileName": "itnor cover1.png" 
+        }
+    ],
+
+    "secondProject":[
+        {
+            "name": "craze concept my ver",
+            "caption": "my final design, submitted to team for review",
+            "date": "2026-1-5",
+            "fileName": "craze concept mine.png"
+        },
+        {
+            "name": "craze concept final",
+            "caption": "revisions per team lead's feedback",
+            "date": "2026-1-5",
+            "fileName": "craze concept final.png"
+        },
+        {
+            "name": "craze concept variations",
+            "caption": "initial iterations",
+            "date": "2025-9-8",
+            "fileName": "craze concept1.png"
+        },
+        {
+            "name": "craze vs sonic",
+            "caption": "quick sketch of the first fight between craze and sonic",
+            "date": "2026-1-6",
+            "fileName": "craze sketch.png"
+        },
+        {
+            "name": "shadow concept final",
+            "caption": "team lead's final decision",
+            "date": "2024-12-24",
+            "fileName": "shadow concept final.png"
+        },
+        {
+            "name": "shadow concept turnaround",
+            "caption": "turnaround for 3D artist",
+            "date": "2025-2-28",
+            "fileName": "shadow conceptTA.png" 
+        },
+        {
+            "name": "shadow concept variations",
+            "caption": "variations of shadow's design",
+            "date": "2024-12-24",
+            "fileName": "shadow concept1.png" 
+        },
+        {
+            "name": "knuckles concept final",
+            "caption": "team lead's final decision",
+            "date": "2025-2-28",
+            "fileName": "knux concept final.png" 
+        },
+        {
+            "name": "knuckles concept first round variations",
+            "caption": "first round of iterations",
+            "date": "2025-2-28",
+            "fileName": "knux concept1.png" 
+        },
+        {
+            "name": "knuckles concept second round variations",
+            "caption": "second round of iterations after team feedback",
+            "date": "2025-2-28",
+            "fileName": "knux concept2.png" 
+        },
+        {
+            "name": "sonic concept",
+            "caption": "quick iteration of a teammate's work",
+            "date": "2026-1-5",
+            "fileName": "sonic concept.png" 
+        }
+    ],
+
+    "thirdProject":[
+        {
+            "name": "hadz face",
+            "caption": "portrait concept for main character",
+            "date": "2024-8-6",
+            "fileName": "hadz face.png"
+        },
+        {
+            "name": "hadz sketches",
+            "caption": "first sketches of main character",
+            "date": "2025-9-3",
+            "fileName": "hadz sketches.png" 
+        },
+        {
+            "name": "sachie sketches",
+            "caption": "first sketches",
+            "date": "2025-9-13",
+            "fileName": "sachie sketches.png" 
+        },
+        {
+            "name": "nayeli sketches",
+            "caption": "first sketches",
+            "date": "2025-9-13",
+            "fileName": "nayeli sketches.png" 
+        }
+    ],
+
+    "illustrations":[
+        {
+            "name": "luna snow",
+            "caption": "luna snow dawing",
+            "date": "2025-12-10",
+            "fileName": "lunasnow.png"
+        },
+        {
+            "name": "daiwa vodka",
+            "caption": "uma dawing",
+            "date": "2025-12-10",
+            "fileName": "daiwa vodka.png"
+        },
+        {
+            "name": "pokemon za",
+            "caption": "pokemon za dawing",
+            "date": "2025-12-10",
+            "fileName": "pokemon za.png"
+        },
+        {
+            "name": "dmg amy",
+            "caption": "dmg amy dawing",
+            "date": "2025-12-10",
+            "fileName": "dmg amy.png"
+        }
+    ],
+    "life-drawing":[
+      {
+            "name": "gage 1",
+            "caption": "WI24 life drawing",
+            "date": "2025-12-12",
+            "fileName": "wi24 gage quick1.jpg"
+        },
+        {
+            "name": "gage 2",
+            "caption": "WI24 life drawing 2",
+            "date": "2025-12-12",
+            "fileName": "wi24 gage quick2.jpg"
+        },
+        {
+            "name": "sum25 gage",
+            "caption": "summer 2025 life painting",
+            "date": "2025-12-12",
+            "fileName": "sum25 gage.jpg"
+        },
+         {
+            "name": "wi23 uw",
+            "caption": "winter 2023 life painting",
+            "date": "2025-12-12",
+            "fileName": "wi23 gloria.jpg"
+        }
+    ]
+}

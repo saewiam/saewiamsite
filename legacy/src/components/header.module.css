@@ -1,0 +1,54 @@
+.header {
+    text-align: center;
+    h1{
+        margin: 30px auto;
+        font-size: 3em;
+    }
+    overflow: visible;
+}
+
+.navigation {
+    display: flex;
+    max-width: 800px;
+    margin: auto;
+
+    overflow: visible;
+    /* nav items */
+    & > * {
+        flex-grow: 1;
+        font-size: 1.5em;
+        text-decoration: none;
+        &:hover {
+            background-color: #eee;
+        }
+    }
+}
+
+.multi_item {
+    display: inline;
+    overflow: visible;
+    position: relative;
+
+    & > div {
+        width: 100%;
+        display: none;
+        position: absolute;
+    }
+    a:first-child {
+        display: block;
+        z-index: 10;
+        padding: top;
+        color: inherit;
+    }
+    &:hover > div {
+        display: block;
+        & > a {
+            display: block;
+            color: darkgrey;
+        }
+    }
+}
+
+:global(.active){
+    color: purple;
+}

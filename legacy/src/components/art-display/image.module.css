@@ -1,0 +1,15 @@
+.image{
+    padding: 10px;
+    border: 1px solid black;
+    img {
+        width: 100%;
+    }
+}
+.long_image {
+    width: auto;
+    margin: auto;
+    img {
+        width: auto;
+        height: 90vh;
+    }
+}

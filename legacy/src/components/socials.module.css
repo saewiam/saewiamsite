@@ -1,0 +1,9 @@
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    svg {
+        width: 2rem;
+        height: 2rem;
+    }
+}
