@@ -1,5 +1,6 @@
 .PHONY: start restart stop clean build
 start:
+	-mkdir build
 	docker compose up --build --remove-orphans --watch
 restart: stop start
 stop:
